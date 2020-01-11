@@ -1,0 +1,15 @@
+{
+	"name": "dhtmdgkr123/codeigniter-custom",
+	"description": "The CodeIgniter Application with Composer with dhtmdgkr123",
+	"require": {
+		"php": ">=5.3.2",
+		"codeigniter/framework": "3.1.*",
+		"vlucas/phpdotenv": "^4.1",
+		"guzzlehttp/guzzle": "^6.5",
+		"php-amqplib/php-amqplib": "^2.11"
+	},
+	"license": "MIT",
+	"require-dev": {
+		"mikey179/vfsstream": "1.1.*"
+	}
+}

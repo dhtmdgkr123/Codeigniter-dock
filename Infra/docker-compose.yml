@@ -1,0 +1,65 @@
+version: '2'
+services:
+
+  web:
+    image: nginx:1.17.3-alpine
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - php
+      - redis
+    volumes_from:
+      - php
+
+  php:
+    image: php:7.3.9-fpm
+    build:
+      dockerfile: ./php/Dockerfile
+      context: .
+    volumes:
+      - ${PROJECT_PATH}:/var/www
+    depends_on:
+      - redis
+      - megqeue
+
+  redis:
+    image: redis:5.0.5-alpine
+    build: ./redis
+    ports:
+      - "6379:6379"
+
+  db:
+    image: mariadb:10.4.8-bionic
+    ports:
+      - 3306:3306 
+    volumes: 
+      - ./db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PW}
+      MYSQL_USER: ${DB_USER_ID}
+      MYSQL_PASSWORD: ${DB_USER_PW}
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    volumes: 
+      - ./pma/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    ports: 
+      - 8080:80
+      
+  megqeue:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - './rabbitmqData:/data'
+    environment:
+      - RABBITMQ_DEFAULT_USER=${MQ_USER_ID}
+      - RABBITMQ_DEFAULT_PASS=${MQ_USER_PW}
