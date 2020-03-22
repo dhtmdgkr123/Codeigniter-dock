@@ -21,7 +21,32 @@ $ cd Infra && docker-compose up
 <ul>
     <li>Nginx</li>
     <li>Redis</li>
-    <li>PHP 7.4</li>
+    <li>PHP 7.3</li>
+    <li>RABBIT MQ</li>
+    <li>Codeigniter 3.1.1</li>
+    <li>Composer
+        <ul>
+            <li>Guzzle</li>
+            <li>DotEnv</li>
+            <li>Rabbit MQ</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Version 1.1.0</h5>
+<ul>
+    <li>Nginx</li>
+    <li>Redis</li>
+    <li>PHP 7.4.2
+        <ul>
+            <li> PHP pdo </li>
+            <li> PHP mbstring </li>
+            <li> PHP mysqli </li>
+            <li> PHP bcmath </li>
+            <li> PHP intl </li>
+            <li> PHP redis </li>
+        </ul>
+    </li>
     <li>RABBIT MQ</li>
     <li>Codeigniter 3.1.1</li>
     <li>Composer
